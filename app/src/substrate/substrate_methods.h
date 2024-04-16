@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  (c) 2019 - 2022 Zondax AG
+ *  (c) 2019 - 2023 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -13,11 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  ********************************************************************************/
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wextern-c-compat"
 #pragma once
 
 #ifdef __cplusplus
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wextern-c-compat"
+
 extern "C" {
 #endif
 
@@ -26,15 +27,19 @@ extern "C" {
 
 #define GET_PD_CALL(CALL, VERSION) (PD_CALL_##CALL##_V##VERSION)
 
-#include "substrate_methods_V1.h"
-#include "substrate_types_V1.h"
+#include "substrate_methods_V2.h"
+#include "substrate_methods_V3.h"
+#include "substrate_types_V2.h"
+#include "substrate_types_V3.h"
 
 typedef union {
-    pd_Method_V1_t V1;
+    pd_Method_V3_t V3;
+    pd_Method_V2_t V2;
 } pd_Method_t;
 
 typedef union {
-    pd_MethodNested_V1_t V1;
+    pd_MethodNested_V3_t V3;
+    pd_MethodNested_V2_t V2;
 } pd_MethodNested_t;
 
 #ifdef __cplusplus
